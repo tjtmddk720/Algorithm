@@ -44,13 +44,11 @@ public class Main {
         for(int j=partial_length;j<DNA_length;j++) {
             int i = j - partial_length; // 이전 문자열의 시작을 나타내는 문자
 
-            if (i >= 0) {
                 // 이전 문자열의 시작에서 해당되는 조건을 뺆
                 if (DNA[i] == 'A') now[0]--;
                 if (DNA[i] == 'C') now[1]--;
                 if (DNA[i] == 'G') now[2]--;
                 if (DNA[i] == 'T') now[3]--;
-            }
 
                 // 새로 추가된 문자에서 해당되는 조건을 추가
                 if (DNA[j] == 'A') now[0]++;
