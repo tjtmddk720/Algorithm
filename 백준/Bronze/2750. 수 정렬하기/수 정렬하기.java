@@ -9,8 +9,8 @@ public class Main {
        for(int i = 0;i<N;i++){
            arr[i] = Integer.parseInt(bf.readLine());
        }
-       for(int j = 0;j<N;j++){
-           for (int i = 0; i < N - 1; i++) {
+       for(int j = 0;j<N-1;j++){ // loop 수(정렬할 수-1)
+           for (int i = 0; i < N - 1 - j; i++) { // loop를 돌수록 뒤에서부터 정렬할 수가 줄어듦
                if (arr[i] > arr[i + 1]) {
                    int tmp = arr[i + 1];
                    arr[i + 1] = arr[i];
