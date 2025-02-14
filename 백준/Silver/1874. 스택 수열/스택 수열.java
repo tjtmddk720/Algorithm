@@ -1,45 +1,48 @@
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.Stack;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int [] arr = new int[N];
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+    public static void main(String[] args) throws Exception {
+        int num = Integer.parseInt(br.readLine());
+        Deque<Integer> stack = new ArrayDeque<>();
+        List<String> list = new ArrayList<>();
 
-        for(int i=0;i<N;i++) {
-            arr[i] = sc.nextInt();
-        }
-        // 1부터 n까지의 수를 스택에 넣었다가 뽑아 늘어놓음으로써, 하나의 수열을 만듦
-        // push하는 순서는 반드시 오름차순으로
-        // pop해서 나오는 수로 수열을 만듦
-        // 원하는 수와 같아질 때까지 push함
-        // 해당 수가 나오면 pop
-        // stack은 라이브러리 활용할 수 있음
-        
-        Stack<Integer> stack = new Stack<>();
-        int num = 1;
-        StringBuffer bf = new StringBuffer();
-        boolean result = true;
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]>=num){
-                while(arr[i]>=num){
-                    stack.push(num++);
-                    bf.append("+\n");
+        int max = 0;
+
+        int tmp = num;
+        while(tmp-- >= 1) {
+            int input = Integer.parseInt(br.readLine());
+
+            if(input > max) {
+                for(int i = max+1; i <= input; i++) {
+                    stack.push(i);
+                    list.add("+");
                 }
-                stack.pop();
-                bf.append("-\n");
-            } else {
-                int n = stack.pop();
+                max = input;
+            }
 
-                if(n>arr[i]){
-                    System.out.println("NO");
-                    result = false;
-                    break;
-                } else bf.append("-\n");
+            if(stack.peek() == input) {
+                stack.pop();
+                list.add("-");
+            } else {
+                list.clear();
+                list.add("NO");
+                break;
             }
         }
-        if(result) System.out.println(bf.toString());
+        for(String s : list) {
+            bw.write(s+"\n");
+        }
+        br.close();
+        bw.flush();
+        bw.close();
     }
 }
