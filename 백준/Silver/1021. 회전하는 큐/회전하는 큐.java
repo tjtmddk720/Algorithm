@@ -14,6 +14,8 @@ public class Main {
 
         LinkedList<Integer> deque = new LinkedList<>();
 
+        // 뽑아내려고 하는 원소의 위치는 가장 처음 큐에서의 위치
+        // i값이 처음 큐에서의 위치를 의미
         for(int i = 1; i<= total; i++){
             deque.add(i);
         }
