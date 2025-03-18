@@ -1,5 +1,5 @@
 -- 코드를 입력하세요
 SELECT name
-from animal_ins
-order by datetime
-limit 1;
+FROM animal_ins
+order by datetime asc
+fetch next 1 row only;
